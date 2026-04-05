@@ -1,0 +1,709 @@
+
+:root {
+  --fondo-profundo:   #080b10;
+  --fondo-tarjeta:    #0d1117;
+  --fondo-tarjeta2:   #111720;
+  --fondo-hover:      #161d28;
+  --borde:            #1e2a38;
+  --borde-brillante:  #2a3a50;
+  --acento:           #6c63ff;
+  --acento2:          #00e5c8;
+  --acento3:          #ff6b6b;
+  --texto-primario:   #e8edf5;
+  --texto-secundario: #7a8fa8;
+  --texto-tenue:      #3d5068;
+  --color-cpu:        #6c63ff;
+  --color-gpu:        #00e5c8;
+  --color-ram:        #ffd166;
+  --color-disco:      #06d6a0;
+  --color-red:        #118ab2;
+  --peligro:          #ff4444;
+  --advertencia:      #ffaa00;
+  --exito:            #00e5a0;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: 'Syne', sans-serif;
+  background: var(--fondo-profundo);
+  color: var(--texto-primario);
+  min-height: 100vh;
+  display: flex;
+  overflow: hidden;
+}
+
+/* ═══════════════════════════════════════
+   barra-lateral.css — Barra lateral y topbar
+   ═══════════════════════════════════════ */
+
+/* ── BARRA LATERAL ── */
+.barra-lateral {
+  width: 220px;
+  min-height: 100vh;
+  background: var(--fondo-tarjeta);
+  border-right: 1px solid var(--borde);
+  display: flex;
+  flex-direction: column;
+  padding: 24px 0;
+  flex-shrink: 0;
+  position: relative;
+  z-index: 10;
+}
+
+.logotipo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0 20px 28px;
+  border-bottom: 1px solid var(--borde);
+  margin-bottom: 20px;
+}
+
+.logotipo-icono {
+  width: 36px;
+  height: 36px;
+  background: linear-gradient(135deg, var(--acento), #9b59ff);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+}
+
+.logotipo-texto {
+  font-size: 16px;
+  font-weight: 800;
+  letter-spacing: -0.3px;
+}
+
+.elemento-nav {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 20px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--texto-secundario);
+  transition: all 0.2s;
+  border-left: 3px solid transparent;
+  margin: 2px 0;
+}
+
+.elemento-nav:hover {
+  background: var(--fondo-hover);
+  color: var(--texto-primario);
+}
+
+.elemento-nav.activo {
+  background: rgba(108, 99, 255, 0.12);
+  color: var(--acento);
+  border-left-color: var(--acento);
+}
+
+.icono-nav {
+  font-size: 16px;
+  width: 20px;
+  text-align: center;
+}
+
+.pie-barra-lateral {
+  margin-top: auto;
+  padding: 16px 20px;
+  border-top: 1px solid var(--borde);
+  font-size: 11px;
+  color: var(--texto-tenue);
+  font-family: 'JetBrains Mono', monospace;
+}
+
+.carga-global {
+  margin-top: 10px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 11px;
+  color: var(--texto-secundario);
+}
+
+.barra-mini {
+  flex: 1;
+  height: 4px;
+  background: var(--borde);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.barra-mini-relleno {
+  height: 100%;
+  border-radius: 2px;
+  background: var(--acento);
+  transition: width 1s;
+}
+
+/* ── BARRA SUPERIOR ── */
+.barra-superior {
+  height: 56px;
+  background: var(--fondo-tarjeta);
+  border-bottom: 1px solid var(--borde);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 28px;
+  flex-shrink: 0;
+}
+
+.insignia-estado {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(0, 229, 160, 0.1);
+  border: 1px solid rgba(0, 229, 160, 0.25);
+  border-radius: 20px;
+  padding: 5px 14px;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--exito);
+  letter-spacing: 0.3px;
+}
+
+.punto-estado {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--exito);
+  animation: pulso 2s infinite;
+}
+
+@keyframes pulso {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.4; }
+}
+
+.barra-superior-derecha {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.reloj-vivo {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13px;
+  color: var(--texto-secundario);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.etiqueta-vivo {
+  background: var(--peligro);
+  color: #fff;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  padding: 2px 7px;
+  border-radius: 4px;
+}
+
+.boton-notificacion {
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  background: var(--fondo-tarjeta2);
+  border: 1px solid var(--borde);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  position: relative;
+  font-size: 16px;
+  transition: all 0.2s;
+}
+
+.boton-notificacion:hover { border-color: var(--acento); }
+
+.punto-notificacion {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--peligro);
+  border: 2px solid var(--fondo-tarjeta);
+}
+
+.info-usuario {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+}
+
+.avatar-usuario {
+  width: 34px;
+  height: 34px;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #6c63ff, #00e5c8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  font-weight: 800;
+}
+
+.texto-usuario     { text-align: right; }
+.nombre-usuario    { font-size: 13px; font-weight: 700; }
+.rol-usuario       { font-size: 11px; color: var(--texto-secundario); }
+
+
+/* ═══════════════════════════════════════
+   contenido.css — Área principal y tarjetas
+   ═══════════════════════════════════════ */
+
+/* ── PRINCIPAL ── */
+.principal {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  overflow: hidden;
+}
+
+/* ── CONTENIDO ── */
+.contenido {
+  flex: 1;
+  overflow-y: auto;
+  padding: 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.contenido::-webkit-scrollbar       { width: 6px; }
+.contenido::-webkit-scrollbar-track { background: transparent; }
+.contenido::-webkit-scrollbar-thumb { background: var(--borde-brillante); border-radius: 3px; }
+
+/* ── CABECERA DE PÁGINA ── */
+.cabecera-pagina {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+.titulo-pagina    { font-size: 28px; font-weight: 800; letter-spacing: -0.5px; }
+.subtitulo-pagina { font-size: 13px; color: var(--texto-secundario); margin-top: 4px; font-weight: 400; }
+
+/* ── BANNER DE ALERTA ── */
+.banner-alerta {
+  background: rgba(255, 68, 68, 0.07);
+  border: 1px solid rgba(255, 68, 68, 0.3);
+  border-radius: 12px;
+  padding: 14px 20px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.icono-alerta {
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  background: rgba(255, 68, 68, 0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  flex-shrink: 0;
+}
+
+.texto-alerta .titulo-alerta  { font-size: 13px; font-weight: 700; color: #ff6b6b; }
+.texto-alerta .descripcion-alerta { font-size: 12px; color: var(--texto-secundario); margin-top: 3px; }
+
+.boton-alerta {
+  margin-left: auto;
+  background: var(--peligro);
+  border: none;
+  color: #fff;
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  font-family: 'Syne', sans-serif;
+  white-space: nowrap;
+  transition: opacity 0.2s;
+}
+
+.boton-alerta:hover { opacity: 0.85; }
+
+/* ── FILA DE MÉTRICAS ── */
+.fila-metricas {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 14px;
+}
+
+.tarjeta-metrica {
+  background: var(--fondo-tarjeta);
+  border: 1px solid var(--borde);
+  border-radius: 14px;
+  padding: 18px;
+  cursor: pointer;
+  transition: all 0.25s;
+  position: relative;
+  overflow: hidden;
+}
+
+.tarjeta-metrica:hover {
+  border-color: var(--borde-brillante);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+}
+
+.tarjeta-metrica::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  border-radius: 14px 14px 0 0;
+  opacity: 0;
+  transition: opacity 0.25s;
+}
+
+.tarjeta-metrica:hover::before { opacity: 1; }
+.tm-cpu::before   { background: var(--color-cpu); }
+.tm-gpu::before   { background: var(--color-gpu); }
+.tm-ram::before   { background: var(--color-ram); }
+.tm-disco::before { background: var(--color-disco); }
+.tm-red::before   { background: var(--color-red); }
+
+.tm-cabecera {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.tm-etiqueta {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  color: var(--texto-secundario);
+}
+
+.tm-delta {
+  font-size: 11px;
+  font-weight: 600;
+  font-family: 'JetBrains Mono', monospace;
+  display: flex;
+  align-items: center;
+  gap: 3px;
+}
+
+.delta-subida { color: var(--exito); }
+.delta-bajada { color: var(--acento3); }
+
+.tm-icono {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 15px;
+}
+
+.tm-valor      { font-size: 32px; font-weight: 800; letter-spacing: -1px; line-height: 1; margin-bottom: 4px; }
+.tm-unidad     { font-size: 14px; font-weight: 500; color: var(--texto-secundario); }
+.tm-secundario { font-size: 11px; color: var(--texto-secundario); margin-top: 10px; display: flex; align-items: center; gap: 6px; }
+.punto-temp    { font-size: 13px; }
+
+.tm-barra        { height: 3px; background: var(--borde); border-radius: 2px; overflow: hidden; margin-top: 10px; }
+.tm-barra-relleno { height: 100%; border-radius: 2px; transition: width 1s; }
+
+/* ── TARJETA GENÉRICA ── */
+.tarjeta {
+  background: var(--fondo-tarjeta);
+  border: 1px solid var(--borde);
+  border-radius: 14px;
+  padding: 20px;
+}
+
+.tarjeta-cabecera     { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 16px; }
+.tarjeta-titulo       { font-size: 15px; font-weight: 700; }
+.tarjeta-subtitulo    { font-size: 12px; color: var(--texto-secundario); margin-top: 3px; font-weight: 400; }
+
+/* ── GRUPO DE ALTERNADORES ── */
+.grupo-alternadores { display: flex; gap: 4px; }
+
+.boton-alternador {
+  padding: 5px 12px;
+  font-size: 12px;
+  font-weight: 600;
+  border: 1px solid var(--borde);
+  border-radius: 6px;
+  background: transparent;
+  color: var(--texto-secundario);
+  cursor: pointer;
+  transition: all 0.2s;
+  font-family: 'Syne', sans-serif;
+}
+
+.boton-alternador.activo {
+  background: var(--acento);
+  border-color: var(--acento);
+  color: #fff;
+}
+
+canvas { display: block; }
+
+/* ── BARRA INFERIOR ── */
+.barra-inferior {
+  height: 32px;
+  background: var(--fondo-tarjeta);
+  border-top: 1px solid var(--borde);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+  font-size: 11px;
+  color: var(--texto-tenue);
+  font-family: 'JetBrains Mono', monospace;
+  flex-shrink: 0;
+}
+
+.tiempo-activo { color: var(--texto-secundario); }
+.version       { color: var(--texto-tenue); }
+
+/* ── PÁGINAS ── */
+.pagina         { display: none; }
+.pagina.activa  { display: contents; }
+
+/* ═══════════════════════════════════════
+   componentes.css — Procesos, almacenamiento,
+                     térmica y núcleos CPU
+   ═══════════════════════════════════════ */
+
+/* ── FILA DE GRÁFICOS ── */
+.fila-graficos { display: grid; grid-template-columns: 1fr 340px; gap: 16px; }
+
+/* ── LISTA DE PROCESOS ── */
+.lista-procesos { display: flex; flex-direction: column; gap: 10px; }
+
+.elemento-proceso {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 12px;
+  background: var(--fondo-tarjeta2);
+  border-radius: 10px;
+  border: 1px solid transparent;
+  transition: all 0.2s;
+  cursor: pointer;
+}
+
+.elemento-proceso:hover { border-color: var(--borde); }
+
+.nombre-proceso    { font-size: 13px; font-weight: 600; flex: 1; }
+.sub-proceso       { font-size: 11px; color: var(--texto-secundario); margin-top: 2px; }
+
+.contenedor-barra-proceso { width: 80px; }
+
+.barra-proceso        { height: 4px; background: var(--borde); border-radius: 2px; overflow: hidden; margin-top: 4px; }
+.barra-proceso-relleno { height: 100%; border-radius: 2px; background: var(--acento); transition: width 1s; }
+
+.carga-proceso {
+  font-size: 13px;
+  font-weight: 700;
+  font-family: 'JetBrains Mono', monospace;
+  width: 40px;
+  text-align: right;
+}
+
+/* ── ESTADÍSTICAS CPU ── */
+.fila-estadisticas-cpu { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-bottom: 20px; }
+
+.tarjeta-estadistica {
+  background: var(--fondo-tarjeta2);
+  border: 1px solid var(--borde);
+  border-radius: 12px;
+  padding: 16px;
+}
+
+.etiqueta-estadistica {
+  font-size: 11px;
+  color: var(--texto-secundario);
+  font-weight: 600;
+  letter-spacing: 0.8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.valor-estadistica { font-size: 26px; font-weight: 800; letter-spacing: -0.5px; }
+.unidad-estadistica { font-size: 13px; color: var(--texto-secundario); font-weight: 500; }
+.nota-estadistica  { font-size: 11px; color: var(--texto-secundario); margin-top: 6px; display: flex; gap: 6px; align-items: center; }
+
+/* ── CUADRÍCULA DE NÚCLEOS ── */
+.cuadricula-nucleos {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  margin-top: 16px;
+}
+
+.tarjeta-nucleo {
+  background: var(--fondo-tarjeta2);
+  border: 1px solid var(--borde);
+  border-radius: 10px;
+  padding: 12px;
+}
+
+.cabecera-nucleo {
+  display: flex;
+  justify-content: space-between;
+  font-size: 11px;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.porcentaje-nucleo {
+  font-family: 'JetBrains Mono', monospace;
+  color: var(--texto-primario);
+  font-size: 13px;
+}
+
+.etiqueta-nucleo  { color: var(--texto-secundario); font-size: 10px; }
+
+.barra-nucleo        { height: 4px; background: var(--borde); border-radius: 2px; overflow: hidden; margin: 4px 0 8px; }
+.barra-nucleo-relleno { height: 100%; border-radius: 2px; transition: width 1s; }
+
+.meta-nucleo {
+  display: flex;
+  justify-content: space-between;
+  font-size: 10px;
+  color: var(--texto-secundario);
+  font-family: 'JetBrains Mono', monospace;
+}
+
+.tipo-nucleo {
+  font-size: 9px;
+  color: var(--texto-tenue);
+  background: var(--borde);
+  padding: 1px 5px;
+  border-radius: 3px;
+}
+
+/* ── ALMACENAMIENTO ── */
+.lista-almacenamiento { display: flex; flex-direction: column; gap: 12px; }
+
+.elemento-almacenamiento {
+  padding: 14px;
+  background: var(--fondo-tarjeta2);
+  border: 1px solid var(--borde);
+  border-radius: 10px;
+}
+
+.cabecera-almacenamiento {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 8px;
+  font-size: 13px;
+}
+
+.nombre-almacenamiento { font-weight: 600; }
+.tamaño-almacenamiento { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--texto-secundario); }
+
+.barra-almacenamiento        { height: 6px; background: var(--borde); border-radius: 3px; overflow: hidden; }
+.barra-almacenamiento-relleno { height: 100%; border-radius: 3px; transition: width 1s; }
+
+.pie-almacenamiento {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 8px;
+  font-size: 11px;
+  color: var(--texto-secundario);
+}
+
+/* ── CONSEJO TÉRMICO ── */
+.consejo-termico {
+  background: rgba(108, 99, 255, 0.08);
+  border: 1px solid rgba(108, 99, 255, 0.2);
+  border-radius: 12px;
+  padding: 14px 16px;
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+}
+
+.icono-consejo  { font-size: 20px; flex-shrink: 0; }
+.titulo-consejo { font-size: 12px; font-weight: 700; color: var(--acento); }
+.descripcion-consejo { font-size: 11px; color: var(--texto-secundario); margin-top: 3px; line-height: 1.5; }
+
+/* ── HISTORIAL ── */
+.cuadricula-historial { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+
+.controles-historial  { display: flex; gap: 8px; align-items: center; }
+
+.selector-historial {
+  background: var(--fondo-tarjeta2);
+  border: 1px solid var(--borde);
+  color: var(--texto-primario);
+  padding: 6px 12px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-family: 'Syne', sans-serif;
+  cursor: pointer;
+  outline: none;
+}
+
+/* ── AJUSTES ── */
+.cuadricula-ajustes { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+
+.fila-ajuste {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--borde);
+}
+
+.fila-ajuste:last-child { border-bottom: none; }
+
+.info-ajuste .nombre-ajuste      { font-size: 13px; font-weight: 600; }
+.info-ajuste .descripcion-ajuste { font-size: 11px; color: var(--texto-secundario); margin-top: 2px; }
+
+/* ── INTERRUPTOR ── */
+.interruptor-toggle {
+  position: relative;
+  width: 44px;
+  height: 24px;
+}
+
+.interruptor-toggle input { opacity: 0; width: 0; height: 0; }
+
+.deslizador {
+  position: absolute;
+  cursor: pointer;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: var(--borde);
+  transition: 0.3s;
+  border-radius: 24px;
+}
+
+.deslizador:before {
+  position: absolute;
+  content: "";
+  height: 18px;
+  width: 18px;
+  left: 3px;
+  bottom: 3px;
+  background: #fff;
+  transition: 0.3s;
+  border-radius: 50%;
+}
+
+input:checked + .deslizador { background: var(--acento); }
+input:checked + .deslizador:before { transform: translateX(20px); }
