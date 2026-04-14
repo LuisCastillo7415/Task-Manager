@@ -15,7 +15,13 @@ function Dashboard() {
     const loadData = async () => {
       const sys = await getSystemData();
       const proc = await getProcesses();
-      ssetHistory(prev => [...prev.slice(-20), sys.cpu || 0]);
+     setHistory(prev => [
+  ...prev.slice(-20),
+  {
+    cpu: sys.cpu || 0,
+    ram: sys.ram || 0
+  }
+]);
 
       setSystem(sys);
       setProcesses(proc);
@@ -43,17 +49,21 @@ function Dashboard() {
             <MetricCard title="CPU" value={system.cpu} />
             <MetricCard title="RAM" value={system.ram} />
              <MetricCard title="DISCO" value={system.disk} />
+            
           </div>
 
+          <Chart history={history} />
            
-         
+          
 
           {/* PROCESOS */}
           <ProcessList processes={processes} />
         </div>
       </div>
     </div>
+    
   );
+  
 }
 
 export default Dashboard;
