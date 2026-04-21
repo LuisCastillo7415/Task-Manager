@@ -35,34 +35,43 @@ function Dashboard() {
   }, []);
 
   return (
-    <div style={{ display: "flex" }}>
-      <Sidebar />
+  <div style={{ display: "flex" }}>
+    <Sidebar />
 
-      <div style={{ flex: 1 }}>
-        <Topbar />
+    <div className="principal">
+      <Topbar />
 
-        <div style={{ padding: "20px" }}>
-          <h1>Tablero General</h1>
+      <div className="contenido">
+        <div className="pagina activa">
 
-          {/* MÉTRICAS */}
-          <div style={{ display: "flex", gap: "10px" }}>
-            <MetricCard title="CPU" value={system.cpu} />
-            <MetricCard title="RAM" value={system.ram} />
-             <MetricCard title="DISCO" value={system.disk} />
-            
+          {/* CABECERA */}
+          <div className="cabecera-pagina">
+            <div>
+              <div className="titulo-pagina">Tablero General</div>
+              <div className="subtitulo-pagina">
+                Monitoreo en tiempo real
+              </div>
+            </div>
           </div>
 
-          <Chart history={history} />
-           
-          
+          {/* MÉTRICAS */}
+          <div className="fila-metricas">
+            <MetricCard title="CPU" value={system.cpu} />
+            <MetricCard title="RAM" value={system.ram} />
+            <MetricCard title="DISCO" value={system.disk} />
+          </div>
 
-          {/* PROCESOS */}
-          <ProcessList processes={processes} />
+          {/* GRAFICOS + PROCESOS */}
+          <div className="fila-graficos">
+            <Chart history={history} />
+            <ProcessList processes={processes} />
+          </div>
+
         </div>
       </div>
     </div>
-    
-  );
+  </div>
+);
   
 }
 

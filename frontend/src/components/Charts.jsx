@@ -26,32 +26,36 @@ function Chart({ history }) {
     labels: data.map((_, i) => i + 1),
     datasets: [
       {
-        label: "CPU (%)",
+        label: "CPU",
         data: data.map(d => d.cpu),
         borderColor: "#6c63ff",
-        backgroundColor: "rgba(108,99,255,0.2)",
-        borderWidth: 2,
         tension: 0.4
       },
       {
-        label: "RAM (%)",
+        label: "RAM",
         data: data.map(d => d.ram),
         borderColor: "#ffd166",
-        backgroundColor: "rgba(255,209,102,0.2)",
-        borderWidth: 2,
         tension: 0.4
       }
     ]
   };
 
-  const options = {
-    responsive: true,
-    maintainAspectRatio: false
-  };
-
   return (
-    <div style={{ height: "300px" }}>
-      <Line data={chartData} options={options} />
+    <div className="tarjeta">
+      <div className="tarjeta-cabecera">
+        <div>
+          <div className="tarjeta-titulo">
+            Rendimiento del Sistema
+          </div>
+          <div className="tarjeta-subtitulo">
+            Últimos segundos
+          </div>
+        </div>
+      </div>
+
+      <div style={{ height: "250px" }}>
+        <Line data={chartData} />
+      </div>
     </div>
   );
 }
