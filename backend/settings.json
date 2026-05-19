@@ -1,0 +1,10 @@
+{
+  "tempAlerts": true,
+  "autoRefresh": true,
+  "darkMode": true,
+  "alertSound": false,
+  "historyOnDisk": true,
+  "gpuMonitor": true,
+  "networkMonitor": true,
+  "compactMode": false
+}
