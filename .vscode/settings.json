@@ -1,0 +1,11 @@
+{
+  "files.exclude": {
+    "**/.easter-egg": true
+  },
+  "search.exclude": {
+    "**/.easter-egg": true
+  },
+  "watcher.exclude": {
+    "**/.easter-egg/**": true
+  }
+}
